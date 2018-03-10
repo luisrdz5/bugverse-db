@@ -4,7 +4,7 @@
   "description": "A Simple IoT platform - DB Module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "standard"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/luisrdz5/bugverse-db/issues"
   },
-  "homepage": "https://github.com/luisrdz5/bugverse-db#readme"
+  "homepage": "https://github.com/luisrdz5/bugverse-db#readme",
+  "devDependencies": {
+    "standard": "^11.0.0"
+  }
 }
