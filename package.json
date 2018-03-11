@@ -18,5 +18,10 @@
   "homepage": "https://github.com/luisrdz5/bugverse-db#readme",
   "devDependencies": {
     "standard": "^11.0.0"
+  },
+  "dependencies": {
+    "pg": "^7.4.1",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^4.35.5"
   }
 }
