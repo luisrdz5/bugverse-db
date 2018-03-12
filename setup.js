@@ -1,10 +1,25 @@
 'use strict'
 
 const debug = require('debug')('bugverse:db:setup')
+const inquirer = require('inquirer')
+const chalk = require('chalk')
 const db = require('./')
 const Sequelize = require('sequelize')
+const prompt = inquirer.createPromptModule()
 
 async function setup () {
+  const answer = await prompt([
+    {
+      type: 'confirm',
+      name: 'setup',
+      message: 'This will destroy your database, are you sure?'
+    }
+  ])
+
+  if (!answer.setup) {
+    return console.log('Nothing Happened :) ')
+  }
+
   const config = {
     database: process.env.DB_NAME || 'bugverse',
     username: process.env.DB_USER || 'bugv',
@@ -21,7 +36,7 @@ async function setup () {
   process.exit(0)
 }
 function handleFatalError (err) {
-  console.error(err.message)
+  console.error(`${chalk.red('[fatal error]')} ${err.message}`)
   console.error(err.stack)
   process.exit(1)
 }
