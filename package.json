@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "standard",
     "setup": "DEBUG=bugverse:* node setup.js",
-    "test": "DEBUG=platziverse:* ava test/ --verbose"
+    "test": "DEBUG=platziverse:* nyc --reporter=lcov ava test/ --verbose"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,9 @@
   "homepage": "https://github.com/luisrdz5/bugverse-db#readme",
   "devDependencies": {
     "ava": "^0.25.0",
+    "nyc": "^11.4.1",
+    "proxyquire": "^2.0.0",
+    "sinon": "^4.4.3",
     "sqlite3": "^3.1.13",
     "standard": "^11.0.0"
   },

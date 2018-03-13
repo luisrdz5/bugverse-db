@@ -13,3 +13,4 @@ setupDatabase(config).then( db => {
 ###Modules Aggregate
 -chalk : its a module like make beautiful the server response 
 -Ava: its a test runner 
+-nyc: its a verificator of our test's
