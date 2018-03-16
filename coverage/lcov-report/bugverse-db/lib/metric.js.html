@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for bugverse-db/models/agent.js</title>
+    <title>Code coverage report for bugverse-db/lib/metric.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -16,32 +16,32 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="../../index.html">All files</a> / <a href="index.html">bugverse-db/models</a> agent.js
+      <a href="../../index.html">All files</a> / <a href="index.html">bugverse-db/lib</a> metric.js
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">60% </span>
+        <span class="strong">22.22% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>3/5</span>
-      </div>
-      <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
-        <span class="quiet">Branches</span>
-        <span class='fraction'>0/0</span>
+        <span class='fraction'>2/9</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
-        <span class="quiet">Functions</span>
-        <span class='fraction'>0/1</span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/2</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">60% </span>
+        <span class="strong">25% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/4</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">22.22% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>3/5</span>
+        <span class='fraction'>2/9</span>
       </div>
     </div>
   </div>
-  <div class='status-line medium'></div>
+  <div class='status-line low'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -79,14 +79,42 @@
 34
 35
 36
-37</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -106,10 +134,16 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -117,39 +151,56 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict'
 &nbsp;
-const Sequelize = require('sequelize')
-const setupDatabase = require('../lib/db')
+module.exports = function setupMetric (MetricModel, AgentModel) {
+  async function <span class="fstat-no" title="function not covered" >findByAgentUuid </span>(uuid) {
+<span class="cstat-no" title="statement not covered" >    return MetricModel.findAll({</span>
+      attributes: [ 'type' ],
+      group: [ 'type' ],
+      include: [{
+        atributes: [],
+        model: AgentModel,
+        where: {
+          uuid
+        }
+      }],
+      raw: true
+    })
+  }
 &nbsp;
-module.exports = function <span class="fstat-no" title="function not covered" >setupAgentModel </span>(config) {
-  const sequelize = <span class="cstat-no" title="statement not covered" >setupDatabase(config)</span>
+  async function <span class="fstat-no" title="function not covered" >findByTypeAgentUuid </span>(type, uuid) {
+<span class="cstat-no" title="statement not covered" >    return MetricModel.findAll({</span>
+      attributes: ['id', 'type', 'value', 'createdAt'],
+      where: {
+        type
+      },
+      limit: 20,
+      order: [[ 'createdAt', 'DESC' ]],
+      include: [{
+        attributes: [],
+        model: AgentModel,
+        where: {
+          uuid
+        }
+      }],
+      raw: true
+    })
+  }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return sequelize.define('agent', {</span>
-    uuid: {
-      type: Sequelize.STRING,
-      allowNull: false
-    },
-    username: {
-      type: Sequelize.STRING,
-      allowNull: false
-    },
-    name: {
-      type: Sequelize.STRING,
-      allowNull: false
-    },
-    hostname: {
-      type: Sequelize.INTEGER,
-      allowNull: false
-    },
-    pid: {
-      type: Sequelize.INTEGER,
-      allowNull: false
-    },
-    connected: {
-      type: Sequelize.BOOLEAN,
-      allowNull: false,
-      defaultValue: false
+  async function <span class="fstat-no" title="function not covered" >create </span>(uuid, metric) {
+    const agent = <span class="cstat-no" title="statement not covered" >AgentModel.findOne({</span>
+      where: { uuid }
+    })
+<span class="cstat-no" title="statement not covered" >    if (agent) {</span>
+<span class="cstat-no" title="statement not covered" >      Object.assign(metric, { agentId: agent.id })</span>
+      const result = <span class="cstat-no" title="statement not covered" >await MetricModel.create(metric)</span>
+<span class="cstat-no" title="statement not covered" >      return result.toJSON()</span>
     }
-  })
+  }
+  return {
+    create,
+    findByAgentUuid,
+    findByTypeAgentUuid
+  }
 }
 &nbsp;</pre></td></tr>
 </table></pre>
