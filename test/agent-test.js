@@ -5,12 +5,15 @@ const proxyquire = require('proxyquire')
 const sinon = require('sinon')
 
 const agentFixtures = require('./fixtures/agent')
+// const metricFixtures = require('./fixtures/metric')
 
 let uuid = 'yyy-yyy-yyy'
 let id = 1
 let AgentStub = null
+// let ModelStub = null
 let db = null
 let sandbox = null
+let metricSandbox = null
 
 let config = {
   logging: function () {
@@ -40,12 +43,33 @@ let newAgent = {
   pid: 0,
   connected: false
 }
+let newMetric = {
+  agentid: 'abc-abc-abc',
+  type: 'temperature',
+  value: '5',
+  createAt: new Date(),
+  updatedAt: new Date()
+}
 
 test.beforeEach(async () => {
   sandbox = sinon.sandbox.create()
   AgentStub = {
     hasMany: sandbox.spy()
   }
+
+  metricSandbox = sinon.sandbox.create()
+
+  /*
+  MetricStub = {
+    hasMany: metricSandbox.spy()
+  }
+  */
+
+  // Model create for the Metrics
+  MetricStub.create = metricSandbox.stub()
+  MetricStub.create.withArgs(uuid, newMetric).returns(Promise.resolve({
+    toJSON () { return newAgent }
+  }))
 
   // Model create Stub
   AgentStub.create = sandbox.stub()

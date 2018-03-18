@@ -20,7 +20,7 @@ module.exports = function setupAgentModel (config) {
       allowNull: false
     },
     hostname: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.STRING,
       allowNull: false
     },
     pid: {
