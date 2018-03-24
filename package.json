@@ -20,6 +20,7 @@
   "homepage": "https://github.com/luisrdz5/bugverse-db#readme",
   "devDependencies": {
     "ava": "^0.25.0",
+    "longjohn": "^0.2.12",
     "nyc": "^11.4.1",
     "proxyquire": "^2.0.0",
     "sinon": "^4.4.3",
