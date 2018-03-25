@@ -4,20 +4,25 @@ const debug = require('debug')('bugverse:db:setup')
 const inquirer = require('inquirer')
 const chalk = require('chalk')
 const db = require('./')
+const minimist = require('minimist')
 const Sequelize = require('sequelize')
 const prompt = inquirer.createPromptModule()
 
-async function setup () {
-  const answer = await prompt([
-    {
-      type: 'confirm',
-      name: 'setup',
-      message: 'This will destroy your database, are you sure?'
-    }
-  ])
+const args = minimist(process.argv)
 
-  if (!answer.setup) {
-    return console.log('Nothing Happened :) ')
+async function setup () {
+  if (!args.yes) {
+    const answer = await prompt([
+      {
+        type: 'confirm',
+        name: 'setup',
+        message: 'This will destroy your database, are you sure?'
+      }
+    ])
+
+    if (!answer.setup) {
+      return console.log('Nothing Happened :) ')
+    }
   }
 
   const config = {
